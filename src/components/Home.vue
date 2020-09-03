@@ -1,3 +1,5 @@
+/* eslint-disable spaced-comment */
+/* eslint-disable spaced-comment */
 <template>
   <el-container class="home-container">
     <!-- 头部 -->
@@ -20,7 +22,7 @@
           active-text-color="#409eff"
           :collapse="isCollapse"
           :collapse-transition="false"
-          :default-active = "activePath"
+          :default-active="activePath"
           router
           unique-opened
         >
@@ -28,7 +30,7 @@
           <el-submenu :index="'/' + item.path" v-for="item in menuList" :key="item.id">
             <!-- 一级菜单的模板区域 -->
             <template slot="title">
-              <i class="el-icon-menu"></i>
+              <i :class="icons[item.id]"></i>
               <span>{{item.authName}}</span>
             </template>
             <!-- 二级菜单 -->
@@ -62,6 +64,15 @@ export default {
       menuList: [],
       isCollapse: false,
       activePath: '',
+
+      //阿里云的iconfont
+      icons: {
+        125: 'iconfont icon-yonghuguanli',
+        103: 'iconfont icon-quanxianguanli',
+        101: 'iconfont icon-shangpinguanli',
+        102: 'iconfont icon-dingdanguanli',
+        145: 'iconfont icon-shujutongji',
+      }
     };
   },
   created() {
@@ -78,7 +89,6 @@ export default {
       const { data: res } = await this.$http.get("menus");
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg);
       this.menuList = res.data;
-      this.$message.success(res.meta.msg);
     },
     //切换菜单的折叠与展开
     toggleCollapse() {
