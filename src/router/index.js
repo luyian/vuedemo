@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ShowUser from '../components/ShowUser.vue'
-import Login from '../components/Login.vue'
-import Home from '../components/Home.vue'
-import Welcome from '../components/Welcome.vue'
-import UserList from '../components/user/UserList.vue'
-import RightsList from '../components/rights/RightsList.vue'
-import RolesList from '../components/rights/RolesList.vue'
+import ShowUser from '../components/ShowUser'
+import Login from '../components/Login'
+import Home from '../components/Home'
+import Welcome from '../components/Welcome'
+import UserList from '../components/user/UserList'
+import RightsList from '../components/rights/RightsList'
+import RolesList from '../components/rights/RolesList'
+import GoodsList from '../components/goods/GoodsManager'
+import Error from '../components/error/error-404'
+
+
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     { path: '/', redirect: 'login' },
     { path: '/login', component: Login },
@@ -20,6 +25,8 @@ const router = new Router({
         { path: '/users', component: UserList },
         { path: '/rights', component: RightsList },
         { path: '/roles', component: RolesList },
+        { path: '/goods', component: GoodsList },
+        { path: '/*', component: Error},
       ]
     },
 
